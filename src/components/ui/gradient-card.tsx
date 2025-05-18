@@ -1,8 +1,10 @@
 'use client'
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import ReactMarkdown from "react-markdown";
+import { TextGenerativeComponent } from "../TextGenerativeComponent";
 
-export const GradientCard = () => {
+export const GradientCard = ({ promptTitle, starterQuestions }: { promptTitle: string, starterQuestions: string }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -333,66 +335,27 @@ export const GradientCard = () => {
                 transition: { duration: 1.2, delay: 0.2 }
               }}
             >
-              AI-Powered Inbox Sorting
+              {promptTitle}
             </motion.h3>
 
-            <motion.p
-              className="text-sm mb-6 text-gray-300"
-              style={{
-                lineHeight: 1.5,
-                fontWeight: 350,
-              }}
-              initial={{ filter: "blur(3px)", opacity: 0.7 }}
-              animate={{
-                textShadow: isHovered ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
-                filter: "blur(0px)",
-                opacity: 0.85,
-                transition: { duration: 1.2, delay: 0.4 }
-              }}
-            >
-              OpenMail revolutionizes email management with AI-driven sorting,
-              boosting productivity and accessibility
-            </motion.p>
-
-            {/* Learn More with arrow - matching the image */}
-            <motion.a
-              href="#"
-              className="inline-flex items-center text-white text-sm font-medium group"
-              initial={{ filter: "blur(3px)", opacity: 0.7 }}
-              animate={{
-                filter: "blur(0px)",
-                opacity: 0.9,
-                transition: { duration: 1.2, delay: 0.6 }
-              }}
-              whileHover={{
-                filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.5))"
-              }}
-            >
-              Learn More
-              <motion.svg
-                className="ml-1 w-4 h-4"
-                width="8"
-                height="8"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                animate={{
-                  x: isHovered ? 4 : 0
+            <div className="text-xl mb-6 text-white overflow-y-auto max-h-[420px] pr-4 custom-scrollbar">
+              <motion.div
+                className="overflow-y-auto h-full px-4"
+                style={{
+                  lineHeight: 1.6,
+                  fontWeight: 350,
+                  whiteSpace: "normal", // Changed from pre-wrap to normal
+                  wordBreak: "break-word",
                 }}
-                transition={{
-                  duration: 0.6,
-                  ease: "easeOut"
-                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.85 }}
+                transition={{ duration: 0.2 }}
               >
-                <path
-                  d="M1 8H15M15 8L8 1M15 8L8 15"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </motion.svg>
-            </motion.a>
+                <div className="">
+                  <TextGenerativeComponent starterQuestions={starterQuestions} />
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>
