@@ -12,9 +12,10 @@ export async function GET(request: Request) {
 
 
 async function fetchPromptTitle(userPrompt: string) {
-  const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY,
-  });
+  try {
+    const ai = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY,
+    });
   const config = {
     responseMimeType: 'text/plain',
     systemInstruction: [
@@ -57,7 +58,11 @@ async function fetchPromptTitle(userPrompt: string) {
     model,
     config,
     contents,
-  });
-  const promptTitle = response.text
-  return promptTitle;
+    });
+    const promptTitle = response.text
+    return promptTitle;
+  } catch (error) {
+    console.error("Error fetching prompt title:", error);
+    return "Error fetching prompt title";
+  }
 }

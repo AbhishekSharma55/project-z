@@ -7,7 +7,7 @@ import { QuestionSection } from "./QuestionSection";
 import { CustomInput } from "../ui/CustomInput";
 import { LastStep } from "./LastStep";
 
-export function InitialResponse({ initialResponse }: { initialResponse: string | null }) {
+export function InitialResponse({ initialResponse, initialPrompt }: { initialResponse: string | null, initialPrompt: string | null }) {
     const [buffer, setBuffer] = useState<string>("");
     const [isComplete, setIsComplete] = useState(false);
     const [questions, setQuestions] = useState<string[]>([]);
@@ -145,7 +145,7 @@ export function InitialResponse({ initialResponse }: { initialResponse: string |
             )}
 
             {showLastStep && (
-                <LastStep />
+                <LastStep userPrompt={initialPrompt || "create a todo application"} />
             )}
 
             {!showingDescription && questions.length === 0 && (

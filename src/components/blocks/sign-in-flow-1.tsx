@@ -99,7 +99,7 @@ export const MainComponent = ({ className }: SignInPageProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <InitialResponse initialResponse={promptTitle} />
+            <InitialResponse initialResponse={promptTitle} initialPrompt={initialPrompt} />
           </motion.div>
         )}
       </div>

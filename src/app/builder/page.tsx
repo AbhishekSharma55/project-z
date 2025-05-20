@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { StepsList } from '@/components/builder/StepsList';
 import { FileExplorer } from '@/components/builder/FileExplorer';
@@ -23,7 +23,7 @@ function Component() {
 
 export default Component;`;
 
-export default function Builder() {
+function BuilderContent() {
     const searchParams = useSearchParams();
     const prompt = searchParams.get('prompt');
     const [userPrompt, setPrompt] = useState("");
@@ -37,7 +37,6 @@ export default function Builder() {
     const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
 
     const [steps, setSteps] = useState<Step[]>([]);
-
     const [files, setFiles] = useState<FileItem[]>([]);
 
     useEffect(() => {
@@ -262,5 +261,15 @@ export default function Builder() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function Builder() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gray-900 flex items-center justify-center">
+            <div className="text-white">Loading...</div>
+        </div>}>
+            <BuilderContent />
+        </Suspense>
     );
 }
