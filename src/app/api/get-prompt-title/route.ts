@@ -6,7 +6,6 @@ import {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const userPrompt = searchParams.get("userPrompt");
-  console.log(userPrompt);
   const promptTitle = await fetchPromptTitle(userPrompt || "");
   return NextResponse.json({ promptTitle: promptTitle });
 }
@@ -59,8 +58,6 @@ async function fetchPromptTitle(userPrompt: string) {
     config,
     contents,
   });
-  console.log("response.text", response.text);
   const promptTitle = response.text
-  console.log("promptTitle", promptTitle);
   return promptTitle;
 }

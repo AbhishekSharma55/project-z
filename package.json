@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.51.0",
     "@google/genai": "^0.14.1",
+    "@monaco-editor/react": "^4.7.0",
     "@react-three/fiber": "^9.1.2",
     "@types/three": "^0.176.0",
+    "@webcontainer/api": "^1.6.1",
+    "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.12.1",

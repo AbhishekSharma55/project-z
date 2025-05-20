@@ -74,7 +74,6 @@ export function InitialResponse({ initialResponse }: { initialResponse: string |
             setShowingDescription(false);
             setCurrentQuestionIndex(0);
             setCurrentQuestion(questions[0]);
-            console.log("Moving to first question:", questions[0]);
         }
     };
 
@@ -92,7 +91,6 @@ export function InitialResponse({ initialResponse }: { initialResponse: string |
         } else {
             // Show LastStep component
             setShowLastStep(true);
-            console.log("Final answers:", answers);
         }
     };
 

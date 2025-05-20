@@ -30,15 +30,12 @@ export const MainComponent = ({ className }: SignInPageProps) => {
   }, [step]);
 
   const handleSendMessage = async () => {
-    console.log("Sending message...");
-    console.log(initialPrompt);
 
     setIsTyping(true);
 
     const fetchPromptTitle = async () => {
       const response = await fetch("/api/get-prompt-title?userPrompt=" + initialPrompt);
       const data = await response.json();
-      console.log("Prompt title:", data.promptTitle);
       setPromptTitle(data.promptTitle);
     }
 
